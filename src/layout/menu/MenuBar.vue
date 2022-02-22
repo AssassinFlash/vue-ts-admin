@@ -1,10 +1,11 @@
 <template>
-  <MenuLogo />
+  <MenuLogo v-show="!isCollapsed" />
   <el-menu
     class="el-menu-vertical-demo"
     background-color="#304156"
     router
     :default-active="activeIndex"
+    :collapse="isCollapsed"
     unique-opened
   >
     <MenuItem :menu-list="menuList" />
@@ -14,6 +15,7 @@
 import MenuLogo from './MenuLogo.vue'
 import MenuItem from './MenuItem.vue'
 import { useRoute } from 'vue-router'
+import { useStore } from '@/store'
 import { reactive, computed } from 'vue'
 
 // 菜单数据
@@ -151,11 +153,15 @@ const route = useRoute()
 const activeIndex = computed(() => {
   return route.path
 })
+
+// 是否折叠菜单
+const store = useStore()
+const isCollapsed = computed(() => store.getters['getCollapse'])
 </script>
-<style lang="scss" scoped>
+<style scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 230px;
-  height: 100%;
+  min-height: 400px;
 }
 .el-menu {
   border-right: none;

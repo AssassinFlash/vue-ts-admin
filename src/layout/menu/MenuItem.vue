@@ -13,8 +13,10 @@
       <MenuItem :menu-list="menu.children" />
     </el-sub-menu>
     <el-menu-item v-else :index="menu.path" style="color: #f4f4f5">
-      <component :is="menu.meta.icon" class="icons" />
-      <template #title>{{ menu.meta.title }}</template>
+      <template #title>
+        <component :is="menu.meta.icon" class="icons" />
+        <span>{{ menu.meta.title }}</span>
+      </template>
     </el-menu-item>
   </template>
 </template>

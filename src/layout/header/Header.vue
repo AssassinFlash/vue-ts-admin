@@ -1,5 +1,9 @@
 <template>
-  <div>头部组件</div>
+  <div>
+    <Collapse />
+  </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Collapse from './Collapse.vue'
+</script>
 <style lang="scss" scoped></style>

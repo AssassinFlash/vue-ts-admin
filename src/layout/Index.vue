@@ -1,6 +1,6 @@
 <template>
   <el-container class="layout">
-    <el-aside width="230px" class="aside">
+    <el-aside width="auto" class="aside">
       <MenuBar />
     </el-aside>
     <el-container class="layout">
@@ -27,6 +27,8 @@ import MenuBar from './menu/MenuBar.vue'
   .header {
     height: 50px;
     border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
   }
   .main {
     background: darkcyan;
