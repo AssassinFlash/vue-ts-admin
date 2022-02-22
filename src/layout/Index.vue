@@ -7,7 +7,10 @@
       <el-header class="header">
         <Header />
       </el-header>
-      <el-main class="main">Main</el-main>
+      <el-main class="main">
+        <!-- 二级路由，即 layout 的子路由的出口 -->
+        <router-view />
+      </el-main>
     </el-container>
   </el-container>
 </template>

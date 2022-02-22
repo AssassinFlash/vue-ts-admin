@@ -1,13 +1,20 @@
 <template>
   <MenuLogo />
-  <el-menu class="el-menu-vertical-demo" background-color="#304156">
+  <el-menu
+    class="el-menu-vertical-demo"
+    background-color="#304156"
+    router
+    :default-active="activeIndex"
+    unique-opened
+  >
     <MenuItem :menu-list="menuList" />
   </el-menu>
 </template>
 <script setup lang="ts">
 import MenuLogo from './MenuLogo.vue'
 import MenuItem from './MenuItem.vue'
-import { reactive } from 'vue'
+import { useRoute } from 'vue-router'
+import { reactive, computed } from 'vue'
 
 // 菜单数据
 let menuList = reactive([
@@ -34,7 +41,7 @@ let menuList = reactive([
     },
     children: [
       {
-        path: '/department',
+        path: '/system/department',
         component: '/system/department/department',
         alwaysShow: false,
         name: 'department',
@@ -46,7 +53,7 @@ let menuList = reactive([
         }
       },
       {
-        path: '/userList',
+        path: '/system/userList',
         component: '/system/User/UserList',
         alwaysShow: false,
         name: 'userList',
@@ -58,7 +65,7 @@ let menuList = reactive([
         }
       },
       {
-        path: '/roleList',
+        path: '/system/roleList',
         component: '/system/Role/RoleList',
         alwaysShow: false,
         name: 'roleList',
@@ -70,7 +77,7 @@ let menuList = reactive([
         }
       },
       {
-        path: '/menuList',
+        path: '/system/menuList',
         component: '/system/Menu/MenuList',
         alwaysShow: false,
         name: 'menuList',
@@ -96,7 +103,7 @@ let menuList = reactive([
     },
     children: [
       {
-        path: '/goodCategory',
+        path: '/goods/goodCategory',
         component: '/goods/goodsCategory/goodsCategoryList',
         alwaysShow: false,
         name: 'goodCategory',
@@ -122,7 +129,7 @@ let menuList = reactive([
     },
     children: [
       {
-        path: '/document',
+        path: '/systenConfig/document',
         component: '/system/config/systemDocument',
         alwaysShow: false,
         name: 'http://42.193.158.170:8089/swagger-ui/index.html',
@@ -136,6 +143,14 @@ let menuList = reactive([
     ]
   }
 ])
+
+// 存在问题：每当页面刷新，菜单栏选中项消失
+// 解决方法：获取选中的菜单且赋值到菜单栏的 defaultIndex，
+// 这样菜单刷新就能获取到 defaultIndex 并展开这个值对应的页面
+const route = useRoute()
+const activeIndex = computed(() => {
+  return route.path
+})
 </script>
 <style lang="scss" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
