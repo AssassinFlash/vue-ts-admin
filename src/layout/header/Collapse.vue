@@ -1,5 +1,5 @@
 <template>
-  <el-icon class="fa-icon" @click="changeIcon">
+  <el-icon class="icons" @click="changeIcon">
     <component :is="status ? Expand : Fold" />
   </el-icon>
 </template>
@@ -16,7 +16,8 @@ const changeIcon = () => {
 }
 </script>
 <style lang="scss" scoped>
-.fa-icon {
+.icons {
+  margin-right: 15px;
   display: flex;
   align-items: center;
   font-size: 22px;

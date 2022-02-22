@@ -1,5 +1,5 @@
 <template>
-  <MenuLogo v-show="!isCollapsed" />
+  <MenuLogo v-show="!isCollapsed" class="layout-logo" />
   <el-menu
     class="el-menu-vertical-demo"
     background-color="#304156"
@@ -159,6 +159,20 @@ const store = useStore()
 const isCollapsed = computed(() => store.getters['getCollapse'])
 </script>
 <style scoped>
+@keyframes logoAnimation {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.layout-logo {
+  animation: logoAnimation 1s ease-out;
+}
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 230px;
   min-height: 400px;
